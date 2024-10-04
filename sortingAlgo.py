@@ -1,7 +1,9 @@
 import time
+import multiprocessing
 
 # Bubble Sort
 
+pause_event = multiprocessing.Event()
 
 def bubble_sort(arr, draw_data=None, delay=0):
     print('Bubble sorting... ', arr)
@@ -13,6 +15,10 @@ def bubble_sort(arr, draw_data=None, delay=0):
             if draw_data:
                 draw_data(arr, ["green" if x == j or x == j +
                           1 else "blue" for x in range(len(arr))], algo_num=0)
+
+            while pause_event.is_set():
+                time.sleep(0.1)
+
             time.sleep(delay)
     return arr
 

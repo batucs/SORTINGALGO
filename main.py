@@ -1,9 +1,9 @@
 import tkinter as tk
 import random
 from visualizer import visualize_sorting
-from sortingAlgo import bubble_sort, merge_sort, quick_sort, radix_sort, linear_search
+from sortingAlgo import bubble_sort, merge_sort, quick_sort, radix_sort, linear_search, pause_event
 import multiprocessing
-
+import time
 
 def printValues(window, values):
     print('Values: ', values)
@@ -65,6 +65,7 @@ def main():
 
     tk.Button(window, text="Generate!", command=generateButtonHandler).pack()
 
+
     # Function to handle the click event of the 'sort' button, not functional yet
 
     def startSorting():
@@ -107,6 +108,14 @@ def main():
     tk.Button(window, text="Sort!", command=startSorting).pack()
     window.mainloop()
 
+    # pause_event = multiprocessing.Event()
+    def toggle_pause():
+        if pause_event.is_set():
+            pause_event.clear()
+        else:
+            pause_event.set()
+
+    tk.Button(window, text="Pause", command=toggle_pause)
 
 if __name__ == "__main__":
     main()
