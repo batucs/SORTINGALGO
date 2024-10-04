@@ -20,7 +20,8 @@ def draw_data(arr, color_array, delay=0.05, algo_num=0):
     plt.pause(delay)  # Pause for the animation
 
 
-def visualize_sorting(algorithm, arr, delay=0.05):
-    res = algorithm(arr, draw_data, delay)
+
+def visualize_sorting(algorithm, arr, delay=0.05, pause_event=None):
+    res = algorithm(arr, draw_data, delay, pause_event)  # Pass pause_event
     plt.show()
     return res
